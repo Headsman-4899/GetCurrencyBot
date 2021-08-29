@@ -10,9 +10,11 @@ To start the bot:
 3) find @my12Currency_bot in Telegram and click start button.
 
 Used links:
-1) https://www.youtube.com/watch?v=IX3B87hqF4Y&t=1572s&ab_channel=MJC
-2) https://github.com/kobyzau/mjc-demo-currency/tree/main/src/main/java/com/epam/mjc/currency
-3) https://www.youtube.com/watch?v=jUiHPVR-IYg&ab_channel=SanjarSuvonov
-4) https://core.telegram.org/api/bots
-5) https://github.com/rubenlagus/TelegramBots
-6) https://bhom.ru/currencies/kzt
+1) SDK: 
+  ![image](https://user-images.githubusercontent.com/47030118/131244865-f547d072-9763-4b1c-aa8a-874fe3798229.png)
+2) https://www.youtube.com/watch?v=IX3B87hqF4Y&t=1572s&ab_channel=MJC
+3) https://github.com/kobyzau/mjc-demo-currency/tree/main/src/main/java/com/epam/mjc/currency
+4) https://www.youtube.com/watch?v=jUiHPVR-IYg&ab_channel=SanjarSuvonov
+5) https://core.telegram.org/api/bots
+6) https://github.com/rubenlagus/TelegramBots
+7) https://bhom.ru/currencies/kzt
