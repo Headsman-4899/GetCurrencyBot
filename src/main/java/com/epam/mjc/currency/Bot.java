@@ -29,42 +29,80 @@ public class Bot extends TelegramLongPollingBot {
   @SneakyThrows
   private void handleMessage(Message message) {
     if (message.hasText() && message.hasEntities()) {
-      Optional<MessageEntity> commandEntity =
-          message.getEntities().stream().filter(e -> "bot_command".equals(e.getType())).findFirst();
+      Optional<MessageEntity> commandEntity = message.getEntities().stream().filter(e -> "bot_command".equals(e.getType())).findFirst();
       if (commandEntity.isPresent()) {
-        String command = message
-                .getText()
-                .substring(commandEntity.get().getOffset(), commandEntity.get().getLength());
+        String command = message.getText().substring(commandEntity.get().getOffset(), commandEntity.get().getLength());
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        LocalDateTime date = LocalDateTime.now();
+
         switch (command) {
           case "/start":
             execute(SendMessage.builder()
                     .text("Hello, my name is BestCurrencyBot!" +  "\n"
-                            + "Write \"/test\" command to get a link to check an actual currency.")
+                            + "Write \"/kz\" command to get a link to check an actual currency of KZ." + "\n"
+                            + "Write \"/usd\" command to get a link to check an actual currency of USD." + "\n"
+                            + "Write \"/eur\" command to get a link to check an actual currency of EURO.")
                     .chatId(message.getChatId().toString())
                     .build());
             return;
-          case "/test":
-            if (message.getText().equals("/test")) {
-              DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-              LocalDateTime date = LocalDateTime.now();
 
-              String url = "https://bhom.ru/currencies/kzt/?sb=yes&startdate=" + dtf.format(date.plusDays(-10)) + "&enddate=" + dtf.format(date);
-              String text = "Get the link";
+          case "/kz":
+            String kzUrl = "https://bhom.ru/currencies/kzt/?sb=yes&startdate=" + dtf.format(date.plusDays(-10)) + "&enddate=" + dtf.format(date);
+            String text = "Get the link";
 
-              InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
-              List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
-              List < InlineKeyboardButton > rowInline = new ArrayList < > ();
-              rowInline.add(InlineKeyboardButton.builder().text(text).url(url).build());
-              rowsInline.add(rowInline);
-              markupInline.setKeyboard(rowsInline);
-              message.setReplyMarkup(markupInline);
+            InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
+            List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
+            List < InlineKeyboardButton > rowInline = new ArrayList < > ();
+            rowInline.add(InlineKeyboardButton.builder().text(text).url(kzUrl).build());
+            rowsInline.add(rowInline);
+            markupInline.setKeyboard(rowsInline);
+            message.setReplyMarkup(markupInline);
 
-              execute(SendMessage.builder()
-                      .text("click a button to get information about actual currency.")
-                      .chatId(message.getChatId().toString())
-                      .replyMarkup(InlineKeyboardMarkup.builder().keyboard(rowsInline).build())
-                      .build());
-            }
+            execute(SendMessage.builder()
+                    .text("click a button to get information about actual currency of KZ.")
+                    .chatId(message.getChatId().toString())
+                    .replyMarkup(InlineKeyboardMarkup.builder().keyboard(rowsInline).build())
+                    .build());
+            return;
+
+          case "/usd":
+            String usdUrl = "https://bhom.ru/currencies/usd/?sb=yes&startdate=" + dtf.format(date.plusDays(-10)) + "&enddate=" + dtf.format(date);
+            String text1 = "Get the link";
+
+            InlineKeyboardMarkup markupInlineUsd = new InlineKeyboardMarkup();
+            List<List<InlineKeyboardButton>> rowsInlineUsd = new ArrayList<>();
+            List < InlineKeyboardButton > rowInlineUsd = new ArrayList < > ();
+            rowInlineUsd.add(InlineKeyboardButton.builder().text(text1).url(usdUrl).build());
+            rowsInlineUsd.add(rowInlineUsd);
+            markupInlineUsd.setKeyboard(rowsInlineUsd);
+            message.setReplyMarkup(markupInlineUsd);
+
+            execute(SendMessage.builder()
+                    .text("click a button to get information about actual currency of USD.")
+                    .chatId(message.getChatId().toString())
+                    .replyMarkup(InlineKeyboardMarkup.builder().keyboard(rowsInlineUsd).build())
+                    .build());
+            return;
+
+          case "/eur":
+            String url = "https://bhom.ru/currencies/eur/?sb=yes&startdate=" + dtf.format(date.plusDays(-10)) + "&enddate=" + dtf.format(date);
+            String text2 = "Get the link";
+
+            InlineKeyboardMarkup markupInlineEur = new InlineKeyboardMarkup();
+            List<List<InlineKeyboardButton>> rowsInlineEur = new ArrayList<>();
+            List < InlineKeyboardButton > rowInlineEur = new ArrayList < > ();
+            rowInlineEur.add(InlineKeyboardButton.builder().text(text2).url(url).build());
+            rowsInlineEur.add(rowInlineEur);
+            markupInlineEur.setKeyboard(rowsInlineEur);
+            message.setReplyMarkup(markupInlineEur);
+
+            execute(SendMessage.builder()
+                    .text("click a button to get information about actual currency of EUR.")
+                    .chatId(message.getChatId().toString())
+                    .replyMarkup(InlineKeyboardMarkup.builder().keyboard(rowsInlineEur).build())
+                    .build());
+            return;
         }
       }
     }
