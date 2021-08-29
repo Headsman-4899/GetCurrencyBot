@@ -6,3 +6,4 @@ Used links:
 2) https://github.com/kobyzau/mjc-demo-currency/tree/main/src/main/java/com/epam/mjc/currency
 3) https://www.youtube.com/watch?v=jUiHPVR-IYg&ab_channel=SanjarSuvonov
 4) https://core.telegram.org/api/bots
+5) https://github.com/rubenlagus/TelegramBots
